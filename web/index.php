@@ -1,35 +1,31 @@
 <?php
-include_once(dirname(__FILE__) . "/cabecera.php");
 
-//controlador
-$barra = [
-    ["TEXTO" => "inicio", "ENLACE" => "/index.php"]
-];
+//redireccionamiento a la página principal
+header("location: ./aplicacion/principal/index.php");
 
-//dibuja la plantilla de la vista
-inicioCabecera("APLICACION PRIMER TRIMESTRE");
-cabecera();
-finCabecera();
-inicioCuerpo("2DAW APLICACION INDEX", $barra);
-cuerpo(); //llamo a la vista
-finCuerpo();
+// include_once(dirname(__FILE__) . "/cabecera.php");
 
-// **********************************************************
-//vista
-function cabecera() {}
+// //controlador
+// $barra = [
+//     ["TEXTO" => "inicio", "ENLACE" => "/index.php"]
+// ];
 
-//vista
-function cuerpo()
-{
-?>
-    <!-- <br><br>
-    <div id="barraMenu">
-        <ul>
-            <li><a href="/aplicacion/pruebas/index.php">Pruebas</a></li>
-            <li><a href="/aplicacion/relacion1/index.php">Relación 1</a></li>
-            <li><a href="/aplicacion/relacion2/index.php">Relación 2</a></li>
-        </ul>
+// //dibuja la plantilla de la vista
+// inicioCabecera("APLICACION PRIMER TRIMESTRE");
+// cabecera();
+// finCabecera();
+// inicioCuerpo("2DAW APLICACION INDEX", $barra);
+// cuerpo(); //llamo a la vista
+// finCuerpo();
 
-    </div> -->
-<?php
-}
+// // **********************************************************
+// //vista
+// function cabecera() {}
+
+// //vista
+// function cuerpo()
+// {
+// ?>
+    
+// <?php
+// }
