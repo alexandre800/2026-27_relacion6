@@ -9,7 +9,7 @@ abstract class MuebleBase
     public const MAXIMO_MUEBLES = 9;
 
     //Número de muebles (instancias) creados hasta el momento
-    private static int $_mueblesCreados=0;
+    private static int $_mueblesCreados = 0;
 
     //Propiedades
     private string $_nombre;
@@ -44,7 +44,7 @@ abstract class MuebleBase
         $fechaFinVenta = "31/12/2040",
         $precio = 30
     ) {
-        $numero=0;
+        $numero = 0;
         if (!self::puedeCrear($numero))
             throw new Exception("No se pueden crear más muebles (" .
                 self::$_mueblesCreados . "/" . self::MAXIMO_MUEBLES . ")");
@@ -58,6 +58,8 @@ abstract class MuebleBase
         $this->setFechaIniVenta($fechaIniVenta);
         $this->setFechaFinVenta($fechaFinVenta);
         $this->setPrecio($precio);
+
+        $this->_caracteristicas=new Caracteristicas();
     }
 
     //------------------------------------
@@ -187,6 +189,11 @@ abstract class MuebleBase
         return false;
     }
 
+    public function getCaracteristicas(): Caracteristicas
+    {
+        return $this->_caracteristicas;
+    }
+
     //Métodos para deshabilitar la sobrecarga dinámica
     public function __get(string $name)
     {
@@ -207,7 +214,7 @@ abstract class MuebleBase
      *
      * @return array
      */
-    abstract function damePropiedadesAdicionales():array;
+    abstract function damePropiedadesAdicionales(): array;
 
 
     /**
@@ -238,10 +245,21 @@ abstract class MuebleBase
             " a partir del año " . $this->getAnio() .
             ", vendido desde " . $this->getFechaIniVenta() .
             " hasta " . $this->getFechaFinVenta() .
-            ", precio " . $this->getPrecio()." €";
+            ", precio " . $this->getPrecio() . " €" .
+            ", características: " . $this->_caracteristicas;
     }
 
-    public function anadirCaracteristicas(string $carac, mixed $valor){
+    public function anadirCaracteristicas(string $carac, mixed ...$valor)
+    {
 
+        if (count($valor) % 2 == 0)
+            array_pop($valor);
+
+        $this->_caracteristicas->$carac = $valor[0];
+
+        for ($i = 1; $i < count($valor); $i += 2){
+            $prop=$valor[$i];
+            $this->_caracteristicas->$prop = $valor[$i+1];
+        }
     }
 }

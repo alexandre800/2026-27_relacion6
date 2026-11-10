@@ -34,6 +34,8 @@ function cuerpo()
 
 $mueble1 = new MuebleReciclado("MESA");
 $mueble2 = new MuebleTradicional("SILLA");
+
+$mueble2->anadirCaracteristicas("dureza", "tocha", "densidad", 1.34, "mal parámetro");
 echo $mueble1;
 echo "<br>".$mueble2;
 
