@@ -2,8 +2,7 @@
 
 include_once(dirname(__FILE__) . "/../../../scripts/librerias/validacion.php");
 
-//abstract
-class MuebleBase
+abstract class MuebleBase
 {
 
     //constante con el máximo de muebles
@@ -22,7 +21,16 @@ class MuebleBase
     private float $_precio = 30;
 
     /**
-     * Constructor
+     * Inicializa las variables usando sus métodos set
+     *
+     * @param [type] $nombre -> el único que no tiene valor por defecto,
+     * si el set da false, lanza un error
+     * @param string $fabricante
+     * @param string $pais
+     * @param integer $anio
+     * @param string $fechaIniVenta
+     * @param string $fechaFinVenta
+     * @param integer $precio
      */
     public function __construct(
         $nombre,
@@ -190,9 +198,13 @@ class MuebleBase
         return false;
     }
 
-    //Será redefinido en las clases hijas y devolverá 
-    //un array con el nombre de las propiedades adicionales a la clase base
-    //abstract function damePropiedadesAdicionales();
+    /**
+     * Será redefinido en las clases hijas y devolverá 
+     * un array con el nombre de las propiedades adicionales a la clase base
+     *
+     * @return array
+     */
+    abstract function damePropiedadesAdicionales():array;
 
 
     /**
@@ -223,6 +235,6 @@ class MuebleBase
             " a partir del año " . $this->getAnio() .
             ", vendido desde " . $this->getFechaIniVenta() .
             " hasta " . $this->getFechaFinVenta() .
-            ", precio " . $this->getPrecio();
+            ", precio " . $this->getPrecio()." €";
     }
 }

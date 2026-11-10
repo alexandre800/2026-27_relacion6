@@ -28,7 +28,12 @@ function cuerpo()
 <?php
 
 //pruebas del funcionamiento de las clases
-$mueble1 = new MuebleBase("MESA");
+// $mueble1 = new MuebleBase("MESA");
+// echo $mueble1;
+
+$mueble1 = new MuebleReciclado("MESA");
+$mueble2 = new MuebleTradicional("SILLA");
 echo $mueble1;
+echo "<br>".$mueble2;
 
 }
