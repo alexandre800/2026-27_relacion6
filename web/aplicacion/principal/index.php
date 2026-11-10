@@ -4,8 +4,8 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
 
 //controlador
 $barra = [
-    ["TEXTO" => "inicio", "ENLACE" => "/index.php"],
-    ["TEXTO" => "página principal", "ENLACE" => "/aplicacion/principal/index.php"]
+    ["TEXTO" => "inicio", "ENLACE" => "../../index.php"],
+    ["TEXTO" => "página principal", "ENLACE" => "index.php"]
 ];
 
 //dibuja la plantilla de la vista
@@ -24,16 +24,7 @@ function cabecera() {}
 function cuerpo()
 {
 ?>
-    
+    <a href="pruebas.php">Pruebas de las clases</a>
 <?php
-
-//pruebas del funcionamiento de las clases
-// $mueble1 = new MuebleBase("MESA");
-// echo $mueble1;
-
-$mueble1 = new MuebleReciclado("MESA");
-$mueble2 = new MuebleTradicional("SILLA");
-echo $mueble1;
-echo "<br>".$mueble2;
 
 }

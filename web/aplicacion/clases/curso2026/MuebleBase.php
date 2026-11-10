@@ -20,6 +20,9 @@ abstract class MuebleBase
     private string $_fechaFinVenta = "31/12/2040";
     private float $_precio = 30;
 
+    //propiedad privada caracteristicas
+    private Caracteristicas $_caracteristicas;
+
     /**
      * Inicializa las variables usando sus métodos set
      *
@@ -236,5 +239,9 @@ abstract class MuebleBase
             ", vendido desde " . $this->getFechaIniVenta() .
             " hasta " . $this->getFechaFinVenta() .
             ", precio " . $this->getPrecio()." €";
+    }
+
+    public function anadirCaracteristicas(string $carac, mixed $valor){
+
     }
 }

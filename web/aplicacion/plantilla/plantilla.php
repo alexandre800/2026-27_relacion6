@@ -71,6 +71,7 @@ function inicioCuerpo($cabecera, array $ubicacion)
                 <ul>
                     <li><a href="/index.php">Inicio</a></li>
                     <li><a href="/aplicacion/principal/index.php">Página principal</a></li>
+                    <li><a href="/aplicacion/principal/pruebas.php">Pruebas de clases</a></li>
                 </ul>
 
             </div>
