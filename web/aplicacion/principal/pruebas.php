@@ -14,7 +14,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION INDEX", $barra);
-cuerpo(); //llamo a la vista
+cuerpo($muebles); //llamo a la vista
 finCuerpo();
 
 // **********************************************************
@@ -22,7 +22,7 @@ finCuerpo();
 function cabecera() {}
 
 //vista
-function cuerpo()
+function cuerpo($muebles)
 {
 ?>
     
@@ -35,8 +35,12 @@ function cuerpo()
 $mueble1 = new MuebleReciclado("MESA");
 $mueble2 = new MuebleTradicional("SILLA");
 
-$mueble2->anadirCaracteristicas("dureza", "tocha", "densidad", 1.34, "mal parámetro");
+$mueble2->anadirCaracteristicas("dureza", "alta", "densidad", 1.34, "mal parámetro");
 echo $mueble1;
-echo "<br>".$mueble2;
+echo "<br>".$mueble2."<br>";
+
+foreach($muebles as $mueble){
+    echo "<br>".$mueble;
+}
 
 }

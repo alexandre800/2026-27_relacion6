@@ -91,7 +91,7 @@ abstract class MuebleBase
         if (validaCadena($fabricante, 30, "FaMu:")) {
 
             //se le añade "FaMu:" si no lo tiene
-            validaExpresion($fabricante, "/^[A-Z]*$/", "FaMu:" . $fabricante);
+            validaExpresion($fabricante, "/^(FaMu:).*/", "FaMu:".$fabricante);
             $this->_fabricante = $fabricante;
             return true;
         }
@@ -136,13 +136,12 @@ abstract class MuebleBase
 
     public function setFechaIniVenta(string $fechaIniVenta): bool
     {
-        if (validaFecha($fechaIniVenta, "01/01/2020")) {
-
-            $fechaFab = "01/01/" . $this->getAnio();
+        $fechaFab = "01/01/" . $this->getAnio();
+        if (validaFecha($fechaIniVenta, $fechaFab)) {
             if (
                 DateTime::createFromFormat('d/m/Y', $fechaIniVenta) <
                 DateTime::createFromFormat('d/m/Y', $fechaFab)
-            )
+            )//no se puede vender antes de haberse fabricado
                 $fechaIniVenta = $fechaFab;
 
             $this->_fechaIniVenta = $fechaIniVenta;
@@ -159,13 +158,14 @@ abstract class MuebleBase
 
     public function setFechaFinVenta(string $fechaFinVenta): bool
     {
-        if (validaFecha($fechaFinVenta, "31/12/2040")) {
+        if (validaFecha($fechaFinVenta, "31/12/2040") ) {
 
+            $fechaIniDateTime=DateTime::createFromFormat('d/m/Y', $this->getFechaIniVenta());
             if (
                 DateTime::createFromFormat('d/m/Y', $fechaFinVenta) <
-                DateTime::createFromFormat('d/m/Y', $this->getFechaIniVenta())
-            )
-                $fechaFinVenta = "31/12/2040";
+                $fechaIniDateTime
+            )//no se puede finalizar la venta antes de haberse iniciado
+                $fechaFinVenta = $fechaIniDateTime->modify('+1 year')->format('d/m/y');
 
             $this->_fechaFinVenta = $fechaFinVenta;
             return true;
